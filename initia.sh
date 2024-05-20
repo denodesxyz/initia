@@ -47,6 +47,9 @@ initiad config set client keyring-backend test
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.15uinit,0.01uusdc\"|" $HOME/.initia/config/app.toml
 wget -O $HOME/.initia/config/genesis.json https://initia.s3.ap-southeast-1.amazonaws.com/initiation-1/genesis.json
 wget -O $HOME/.initia/config/addrbook.json https://initia.s3.ap-southeast-1.amazonaws.com/initiation-1/addrbook.json
+sed -i -e "s/^pruning *=.*/pruning = \"custom\"/" $HOME/.initia/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"100\"/" $HOME/.initia/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"50\"/" $HOME/.initia/config/app.toml
 sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.initia/config/config.toml
 sed -i -e '/\[oracle\]/,/^enabled = ".*$/ s/^enabled = ".*$/enabled = "true"/' $HOME/.initia/config/app.toml
 sed -i -e '/\[oracle\]/,/^oracle_address = ".*$/ s/^oracle_address = ".*$/oracle_address = "127.0.0.1:8080"/' $HOME/.initia/config/app.toml
