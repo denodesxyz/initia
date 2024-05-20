@@ -3,9 +3,6 @@
 RED="\e[31m"
 NOCOLOR="\e[0m"
 
-while true
-do
-
 curl -s https://api.denodes.xyz/logo.sh | bash && sleep 1
 echo ""
 echo "Welcome to the Initia One-Liner Script! 🛠
@@ -33,8 +30,8 @@ source $HOME/.bash_profile
 apt update && sudo apt upgrade -y
 apt install build-essential jq git -y
 
-wget https://go.dev/dl/go1.22.3.linux-amd64.tar.gz
-rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.3.linux-amd64.tar.gz
+wget -O go1.22.3.tar.gz https://go.dev/dl/go1.22.3.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.3.tar.gz
 echo "export PATH=$PATH:/usr/local/go/bin" >> $HOME/.profile
 source $HOME/.profile
 
@@ -58,10 +55,13 @@ sed -i 's|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.initia/c
 SEEDS="2eaa272622d1ba6796100ab39f58c75d458b9dbc@34.142.181.82:26656,c28827cb96c14c905b127b92065a3fb4cd77d7f6@testnet-seeds.whispernode.com:25756"
 sed -i 's|^seeds *=.*|seeds = "'$SEEDS'"|' $HOME/.initia/config/config.toml
 
+cd $HOME
 git clone https://github.com/skip-mev/slinky.git
 cd slinky
 git checkout v0.4.3
 make build
+mkdir -p $HOME/.slinky
+cp -r config $HOME/.slinky
 cp build/slinky /usr/local/bin/slinky
 
 sudo tee /etc/systemd/system/slinkyd.service > /dev/null <<EOF
@@ -70,7 +70,7 @@ Description=slinkyd
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/slinky start
+ExecStart=/usr/local/bin/slinky --oracle-config-path $HOME/.slinky/config/core/oracle.json --market-map-endpoint 0.0.0.0:9090
 Restart=on-failture
 StandardOutput=syslog
 StandardError=syslog
