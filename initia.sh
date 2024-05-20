@@ -25,8 +25,8 @@ if [ ! $MONIKER ]; then
 fi
 WALLET="wallet"
 
-echo "export NAMADA_ALIAS="$MONIKER"" >> $HOME/.bash_profile
-echo "export NAMADA_WALLET="$WALLET"" >> $HOME/.bash_profile
+echo "export MONIKER="$MONIKER"" >> $HOME/.bash_profile
+echo "export WALLET="$WALLET"" >> $HOME/.bash_profile
 echo "export CHAIN_ID="initiation-1"" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
