@@ -48,9 +48,9 @@ sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.15uinit,0.01uusdc
 wget -O $HOME/.initia/config/genesis.json https://initia.s3.ap-southeast-1.amazonaws.com/initiation-1/genesis.json
 wget -O $HOME/.initia/config/addrbook.json https://initia.s3.ap-southeast-1.amazonaws.com/initiation-1/addrbook.json
 sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.initia/config/config.toml
-sed -i -e '/\[oracle\]/,/^enabled = ".*$/ s/^enabled = ".*$/enabled = "true"/' app.toml
-sed -i -e '/\[oracle\]/,/^oracle_address = ".*$/ s/^oracle_address = ".*$/oracle_address = "127.0.0.1:8080"/' app.toml
-sed -i -e '/\[oracle\]/,/^client_timeout = ".*$/ s/^client_timeout = ".*$/client_timeout = "500ms"/' app.toml
+sed -i -e '/\[oracle\]/,/^enabled = ".*$/ s/^enabled = ".*$/enabled = "true"/' $HOME/.initia/config/app.toml
+sed -i -e '/\[oracle\]/,/^oracle_address = ".*$/ s/^oracle_address = ".*$/oracle_address = "127.0.0.1:8080"/' $HOME/.initia/config/app.toml
+sed -i -e '/\[oracle\]/,/^client_timeout = ".*$/ s/^client_timeout = ".*$/client_timeout = "500ms"/' $HOME/.initia/config/app.toml
 
 PEERS="093e1b89a498b6a8760ad2188fbda30a05e4f300@35.240.207.217:26656,2c729d33d22d8cdae6658bed97b3097241ca586c@195.14.6.129:26019"
 sed -i 's|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.initia/config/config.toml
@@ -73,6 +73,7 @@ Description=slinkyd
 
 [Service]
 Type=simple
+User=root
 ExecStart=/usr/local/bin/slinky --oracle-config-path $HOME/.slinky/config/core/oracle.json --market-map-endpoint 0.0.0.0:9090
 Restart=on-failture
 StandardOutput=syslog
@@ -93,6 +94,7 @@ Description=initiad
 
 [Service]
 Type=simple
+User=root
 ExecStart=/usr/local/bin/initiad start
 Restart=on-abort
 StandardOutput=syslog
