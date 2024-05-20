@@ -39,9 +39,7 @@ initiad keys add $WALLET --recover
 Let's save the wallet address and the validator address:
 ```
 WALLET_ADDRESS=$(initiad keys show $WALLET -a)
-VALOPER_ADDRESS=$(initiad keys show $WALLET --bech val -a)
 echo "export WALLET_ADDRESS="$WALLET_ADDRESS >> $HOME/.bash_profile
-echo "export VALOPER_ADDRESS="$VALOPER_ADDRESS >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
