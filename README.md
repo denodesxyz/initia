@@ -84,6 +84,9 @@ Here are some handy commands:
 sudo systemctl stop initiad
 sudo systemctl disable initiad
 sudo rm -rf /etc/systemd/system/initiad.service
+sudo systemctl stop slinkyd
+sudo systemctl disable slinkyd
+sudo rm -rf /etc/systemd/system/slinkyd.service
 sudo rm $(which initiad)
 sudo rm $(which slinky)
 sudo rm -rf ~/.initia
