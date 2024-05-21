@@ -1,5 +1,5 @@
 # Initia
-A simplified manual for running a Initia node.
+A simplified manual for running an Initia node.
 
 ### prerequisite
 
