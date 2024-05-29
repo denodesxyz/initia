@@ -71,6 +71,60 @@ initiad tx mstaking create-validator \
 
 ## Useful Commands
 
+Edit validator details:
+```
+initiad tx staking edit-validator \
+  --commission-rate 0.08 \
+  --new-moniker "$MONIKER" \
+  --identity "NEW IDENTITY" \
+  --details "NEW DESCRIPTION" \
+  --from $WALLET \
+  --chain-id initiation-1 \
+  --fees 90000uinit \
+  --gas auto \
+  -y 
+```
+
+Unjail validator:
+```
+initiad tx slashing unjail --from $WALLET --chain-id initiation-1 --gas auto --fees 90000uinit -y
+```
+
+Vote proposal:
+```
+initiad tx gov vote 1 yes --from $WALLET --chain-id initiation-1  --gas auto --fees 90000uinit -y 
+```
+
+Withdraw all rewards:
+```
+initiad tx distribution withdraw-all-rewards --from $WALLET --chain-id initiation-1 --gas auto --fees 90000uinit -y
+```
+
+Withdraw rewards and commission from your validator:
+```
+initiad tx distribution withdraw-rewards $(initiad keys show $WALLET --bech val -a) --from $WALLET --commission --chain-id initiation-1 --gas auto --fees 90000uinit -y 
+```
+
+Delegate more tokens to yourself:
+```
+initiad tx staking delegate $(initiad keys show $WALLET --bech val -a) 1000000uinit --from $WALLET --chain-id initiation-1 --gas auto --fees 90000uinit -y 
+```
+
+Delegate tokens to another validator:
+```
+initiad tx staking delegate <TO_VALOPER_ADDRESS> 1000000uinit --from $WALLET --chain-id initiation-1 --gas auto --fees 90000uinit -y 	
+```
+
+Redelegate tokens from one validator to another:
+```
+initiad tx staking redelegate <FROM_VALOPER_ADDRESS> <TO_VALOPER_ADDRESS> 1000000uinit --from $WALLET --chain-id initiation-1 --gas auto --fees 90000uinit -y 
+```
+
+Transfer tokens to another address:
+```
+initiad tx bank send $(initiad keys show $WALLET -a) <TO_WALLET_ADDRESS> 1000000uinit --gas auto --fees 90000uinit -y 
+```
+
 Here are some handy commands:
 
 - Check logs: `sudo journalctl -u initiad -f`
