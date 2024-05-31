@@ -3,9 +3,9 @@ A simplified manual for running an Initia node.
 
 ### prerequisite
 
-- CPU: **4 Cores**
-- Memory: **16GB**
-- Disk: **1 TB SSD***
+- CPU: **16 Cores**
+- Memory: **16GB RAM**
+- Disk: **2TB SSD***
 - Machine: **Ubuntu 22.04+**
 
 ### script execution
