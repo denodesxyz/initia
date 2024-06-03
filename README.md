@@ -73,7 +73,7 @@ initiad tx mstaking create-validator \
 
 Edit validator details:
 ```
-initiad tx staking edit-validator \
+initiad tx mstaking edit-validator \
   --commission-rate 0.08 \
   --new-moniker "$MONIKER" \
   --identity "NEW IDENTITY" \
@@ -107,17 +107,17 @@ initiad tx distribution withdraw-rewards $(initiad keys show $WALLET --bech val 
 
 Delegate more tokens to yourself:
 ```
-initiad tx staking delegate $(initiad keys show $WALLET --bech val -a) 1000000uinit --from $WALLET --chain-id initiation-1 --gas auto --fees 90000uinit -y 
+initiad tx mstaking delegate $(initiad keys show $WALLET --bech val -a) 1000000uinit --from $WALLET --chain-id initiation-1 --gas auto --fees 90000uinit -y 
 ```
 
 Delegate tokens to another validator:
 ```
-initiad tx staking delegate <TO_VALOPER_ADDRESS> 1000000uinit --from $WALLET --chain-id initiation-1 --gas auto --fees 90000uinit -y 	
+initiad tx mstaking delegate <TO_VALOPER_ADDRESS> 1000000uinit --from $WALLET --chain-id initiation-1 --gas auto --fees 90000uinit -y 	
 ```
 
 Redelegate tokens from one validator to another:
 ```
-initiad tx staking redelegate <FROM_VALOPER_ADDRESS> <TO_VALOPER_ADDRESS> 1000000uinit --from $WALLET --chain-id initiation-1 --gas auto --fees 90000uinit -y 
+initiad tx mstaking redelegate <FROM_VALOPER_ADDRESS> <TO_VALOPER_ADDRESS> 1000000uinit --from $WALLET --chain-id initiation-1 --gas auto --fees 90000uinit -y 
 ```
 
 Transfer tokens to another address:
